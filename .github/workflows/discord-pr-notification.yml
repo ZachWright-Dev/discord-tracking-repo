@@ -14,21 +14,21 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
           -d '{
+            "content": "@zvckool",
             "embeds": [{
-              "title": "New Pull Request",
-              "description": "'"${{ github.event.pull_request.title }}"'",
+              "title": "PR Inbound 👀",
               "url": "'"${{ github.event.pull_request.html_url }}"'",
               "color": 5814783,
               "fields": [
                 {
                   "name": "Author",
                   "value": "'"${{ github.event.pull_request.user.login }}"'",
-                  "inline": true
+                  "inline": false
                 },
                 {
                   "name": "Branch",
                   "value": "'"${{ github.event.pull_request.head.ref }}"' → '"${{ github.event.pull_request.base.ref }}"'",
-                  "inline": true
+                  "inline": false
                 },
                 {
                   "name": "Repository",
@@ -36,7 +36,6 @@ jobs:
                   "inline": false
                 }
               ],
-              "timestamp": "'"${{ github.event.pull_request.created_at }}"'"
             }]
           }' \
           $DISCORD_WEBHOOK_URL
